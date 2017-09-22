@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<!-- saved from url=(0047)http://www.masswerk.at/demospace/eal/syntax.htm -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>EAL - Syntax</title>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#002266" vlink="#002266" alink="#0033ff">
+
+<h2>E.A.L. - Syntax</h2>
+
+EAL (Easy Algorithmic Language) is a simple demo-language for a compiler written in JavaScript for Netscape 3.0 or compatible (JavaScript1.0 with array-object).
+EAL uses a "lean" ALGOL-like syntax.
+The syntax in EBNF (Extended Backus-Naur Form) is specified below:
+
+<xmp>
+<program>    ::= <block>'.'.
+<block>      ::= [CONST <identifier>'='<number> {',' <identifier>'='<number>}';']
+                 [VAR <identifier>{',' <identifier>}';']
+                 {FUNCTION <identifier>';' <block>';'} <statement>.
+<statement>  ::= [<identifier>':='<expression> | CALL <identifier> |
+                 ASK <identifier> | TELL <expression> |
+                 BEGIN <statement> {';' <statement>} END |
+                 IF <condition> THEN <statement> {';' <statement>}
+                 [ELSE <statement> {';' <statement>}] ENDIF|
+                 WHILE <condition> DO <statement> |
+                 <comment>].
+<condition>  ::= <expression> ('='|'#'|'<'|'<='|'>'|'>=') <expression> |
+                 ODD <expression>.
+<expression> ::= ['+'|'-'] <term> {('+'|'-') <term>}.
+<term>       ::= <factor> {('*'|'/') <factor>}.
+<factor>     ::= <identifier> | <number> | '('<expression>')'.
+<number>     ::= <digit>{<digit}.
+<digit>      ::= 0|1|2|3|4|5|6|7|8|9.
+<identifier> ::= <letter>{<letter>|<digit>}.
+<letter>     ::= a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z|
+                 A|B|C|D|E|F|G|H|I|J|K|L|M|N|O|P|Q|R|S|T|U|V|W|X|Y|Z.
+<comment>    ::= '{'{<us-ascii>}'}'.
+</xmp>
+&nbsp;<br>
+
+Have a look at a short <a href="#example">example</a>.
+<p>
+
+<u>Def:</u><br>
+us-ascii ... any us-ascii character but '}'.<br>
+ASK ... simple input.<br>
+TELL ... simple output.<br>
+identifiers and keywords are case sensitive.<br>
+data is integer only.
+
+</p><p>
+<u>How to use:</u><br>
+Type or paste your program into the "Program"-window.<br>
+Press "Compile"; any notification will be shown in the "Console"-window.<br>
+If the compiliation results without errors, press "Run" to run the program.<br>
+(Program input and output will be handled via JavaScript-prompts and -alerts.)<br>
+Any runtime or compilation status will be cleared by resetting the corresponding window.
+</p><p>
+The compilation produces a speed-code stored in listform. The speed-code will be interpreted at runtime.<br>
+See the <a href="pcode.htm">code reference</a> for details.
+
+</p><p>
+<u>Debugging:</u><br>
+The compilation progress is logged in the "Console"-window.<br>
+Any comments will be included. Use them to mark sections of your program.<br>
+Syntax-errors will be marked in the console-output as "[<i>ernr</i>] <i>reason</i> in line <i>nn</i> near '<i>word</i>'.".<sub> </sub><br>
+
+Any runtime input or output will be logged in the console.<br>
+If "Trace" is checked while runtime, the interpreter's status will be alerted for every step.<br>
+"Log" writes the trace-output to the console.
+
+<br>
+<a name="example">&nbsp;</a>
+</p><p>
+
+<u>A short program-listing:</u>
+</p><xmp>
+{ greatest common divisor #2 }
+CONST escapeChar=0;
+VAR x;
+
+FUNCTION calcx;
+  VAR y;
+  BEGIN
+    ASK y;
+    WHILE x # y DO
+    BEGIN
+      IF x > y THEN x := x-y
+      ELSE y := y-x ENDIF;
+    END;
+  END;
+ 
+BEGIN  { main }
+  ASK x;
+  WHILE x # escapeChar DO
+  BEGIN
+    CALL calcx;
+    TELL x; ASK x
+  END
+END.
+</xmp>
+(You can copy &amp; paste this source into the program window. Check "Log" for runtime details.)
+<p>
+<a href="mailto:n.landsteiner@masswerk.at">N.Landsteiner</a> &nbsp; 02.1999
+<br>&nbsp;
+
+
+
+</p></body></html>

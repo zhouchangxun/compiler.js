@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<!-- saved from url=(0046)http://www.masswerk.at/demospace/eal/pcode.htm -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>EAL - Code Reference</title>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#002266" vlink="#002266" alink="#0033ff">
+
+<h2>E.A.L. - Code Reference</h2>
+
+EAL produces a small set of pCode for runtime execution.<br>
+The first digit is the generic op-code followed by its mnemonic.<br>
+'sg' is a segment-count used only with variable-operations, followed by 'ac', the op-code's argument.<br>
+(All op-codes act on a 'lifo'-stack.)
+
+<xmp>
+# OPC sg  ac comment
+-------------------
+0 XOP  0  0  return         XOP ... executive op-code
+          1  switch sign
+          2  minus
+          3  plus
+          4  mult
+          5  div
+          6  eq
+          7  ne
+          8  lt
+          9  le
+         10  gt
+         11  ge
+         12  odd
+         13  NOP
+         14  ask
+         15  tell
+1 PSH  0 ac  push  - pushs a value to TOS (Top Of Stack)
+2 LOD sg ac  load  - pushs a variable from sg-base + ac (base-offset) to TOS
+3 STO sg ac  store - pulls a value from TOS to a variable (sg-base + ac)
+4 CAL sg ac  call  - creates a new segment-base (activation record) on a function call
+5 ALC  0 ac  allocate - allocates stack-space by incrementing the top-pointer by ac
+6 JMP  0 ac  jump  - sets the program-counter to ac
+7 JPC  0 ac  jump on condition - jumps to ac if TOS eq 0
+</xmp>
+
+&nbsp;<br>
+The trace- and log-functions list the following values:
+<xmp>
+P: xx TOS: xx > MMM sg ac  func
+
+P: xx    ... program-counter/step
+TOS: xx  ... top-of-stack value
+MMM      ... mnemonic
+sg       ... segment-count
+ac       ... argument
+func     ... function (XOP only)
+</xmp>
+
+(Thanks to N. Wirth for enlightenment.)
+
+<p>
+<a href="http://www.masswerk.at/demospace/eal/syntax.htm">back</a>
+
+<br><br><br>
+<a href="mailto:n.landsteiner@masswerk.at">N.Landsteiner</a> &nbsp; 02.1999
+<br>&nbsp;
+
+
+
+</p></body></html>

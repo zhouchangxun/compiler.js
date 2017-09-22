@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+
+<HTML>
+
+<HEAD>
+<TITLE>EAL - eine Compiler-Demo</TITLE>
+<script type="text/javascript" src="compiler.js"></script>
+</HEAD>
+
+<BODY BGCOLOR="#bbbbbb" TEXT="#000000" onLoad="resetConsole()">
+
+<CENTER>
+<H2>E.A.L. Easy Algorithmic Language</H2>
+A small compiler-demo in  JavaScript<BR>
+N.Landsteiner  02.1999
+
+<P>
+<HR>
+<TABLE BORDER=0 CELLSPACING=0 CELLSPACING=0>
+<FORM NAME="display">
+<TR>
+<TD VALIGN="top" ALIGN="left" ROWSPAN="2"><FONT SIZE=2>Program:<P></FONT>
+<TEXTAREA NAME="input" ROWS=15 COLS=40 WRAP="virtual"></TEXTAREA>
+</FONT></TD>
+<TD VALIGN="top" ALIGN="left"><FONT SIZE=2>Console:<BR> 
+</FONT></TD>
+<TD VALIGN="top" ALIGN="right"><FONT SIZE=2>Runtime:  
+<INPUT TYPE="checkbox" NAME="traceon">Trace
+<INPUT TYPE="checkbox" NAME="logon">Log
+</FONT></TD>
+</TR>
+<TR>
+<TD VALIGN="top" ALIGN="left" COLSPAN="2">
+<TEXTAREA NAME="output" ROWS=15 COLS=40 WRAP="virtual"></TEXTAREA>
+</FONT></TD>
+</TR>
+
+<TR>
+<TD VALIGN="top" ALIGN="center" COLSPAN="3"><FONT SIZE=2>
+ <BR>
+<INPUT TYPE="button" VALUE="Compile" onClick="doCompile()">
+  
+<INPUT TYPE="button" VALUE="  Run  " onClick="runCode()">
+        
+<INPUT TYPE="button" VALUE="Clear program" onClick="resetProgram('')">
+  
+<INPUT TYPE="button" VALUE="Clear console" onClick="resetConsole()">
+  
+<INPUT TYPE="button" VALUE="Insert demo-script" onClick="resetProgram(demoscript)">
+  
+<INPUT TYPE="button" VALUE="Syntax | Help" onClick="showSyntax()">
+</FONT></TD>
+</TR>
+</FORM>
+</TABLE>
+<P>
+<HR>
+
+</CENTER>
+</BODY>
+
+</HTML>
