@@ -1,6 +1,14 @@
 # compiler.js
-
-## 巴科斯范式(BNF)的内容  
+## 这个项目是什么？
+ 用javascript实现的简易程序语言编译器，可在浏览器编译运行。Demo: [点击查看运行效果](http://oh-my.ga/compiler.js)
+## 这个项目包括什么？
+- 用BNF定义了一种简易编程语言（麻雀虽小，五脏俱全）。
+- 实现了此编程语言的编译器。
+- 自定义的汇编语句及运行时（解释器）。
+## 用途？
+  主要是用来学习编程语言设计相关的知识。
+  
+## 巴科斯范式(BNF)的内容  
 1. `' '` 引号中的字代表着这些字符本身,如'if'。`quote`用来代表双引号。
 2. `' '` 外的字（有可能有下划线）代表着语法部分。 
 3. `< >` 内包含的为必选项。 
@@ -34,3 +42,29 @@
                  A|B|C|D|E|F|G|H|I|J|K|L|M|N|O|P|Q|R|S|T|U|V|W|X|Y|Z.
 <comment>    ::= '{'{<us-ascii>}'}'.
 ```
+## 符合以上语法定义的程序例子
+```python
+{ desc:calculate greatest common divisor }
+CONST escapeChar=0;
+VAR x,y;
+{function definition}
+FUNCTION func1;
+BEGIN
+  ASK x;
+  WHILE x # escapeChar DO
+  BEGIN ASK y;
+    WHILE x # y DO
+    BEGIN
+      IF x > y THEN x := x-y
+      ELSE y := y-x ENDIF;
+    END;
+    TELL x; ASK x
+  END
+END;
+{this is main program}
+BEGIN
+  CALL func1
+END.
+```
+
+*NOTE*: 转自 http://masswerk.at 
